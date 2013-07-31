@@ -1,0 +1,12 @@
+language: java
+jdk: oraclejdk7
+
+before_script: 
+    - wget -q http://dl.google.com/android/android-sdk_r22.0.5-linux.tgz
+    - tar -zxvf android-sdk_r*-linux.tgz > /dev/null
+    - android-sdk-linux/tools/android -s update sdk --filter android-18,platform-tool --no-ui
+    - find -name AndroidManifest.xml -type f | while read i; do android-sdk-linux/tools/android -s update project --path `dirname $i` --target "android-18"; done
+script:
+    - find -name AndroidManifest.xml -type f | while read i; do cd `dirname $i`; ant clean; ant debug; done
+
+
