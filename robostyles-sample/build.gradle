@@ -9,7 +9,7 @@ buildscript {
   }
 }
 
-apply plugin: 'android-library'
+apply plugin: 'android'
 
 android {
   compileSdkVersion 18
@@ -29,7 +29,8 @@ android {
   }
     
   dependencies {
-    compile fileTree(dir: 'libs', include: '*.jar')    
+    compile project(':robostyles')
+    //compile fileTree(dir: 'libs', include: '*.jar')    
     //compile 'se.fishtank:css-selectors:1.0.4'
   }
 }
