@@ -1,5 +1,6 @@
 robostyles
 ==========
+[![Build Status](https://travis-ci.org/groupsky/robostyles.png?branch=master)](https://travis-ci.org/groupsky/robostyles)
 
 An android library for applying multiple styles on android view
 

@@ -1,0 +1,16 @@
+allprojects {
+    group = 'eu.masconsult.robostyles'
+    version = '0.1'
+}
+
+subprojects {
+    buildscript {
+		 repositories {
+		     mavenCentral()
+		     maven { url "http://mirrors.ibiblio.org/maven2" }
+		 }
+		 dependencies {
+		     classpath 'com.android.tools.build:gradle:0.5.4'
+		 }
+    }
+}

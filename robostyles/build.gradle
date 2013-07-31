@@ -1,14 +1,3 @@
-buildscript {
-  repositories {
-    //mavenCentral()
-    maven { url "http://mirrors.ibiblio.org/maven2/" }
-  }
-
-  dependencies {
-    classpath 'com.android.tools.build:gradle:0.5.4'
-  }
-}
-
 apply plugin: 'android-library'
 
 android {
@@ -30,7 +19,6 @@ android {
     
   dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')    
-    //compile 'se.fishtank:css-selectors:1.0.4'
   }
 }
 
