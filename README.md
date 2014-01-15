@@ -68,22 +68,26 @@ how to use
  3. Add to your *Application#OnCreate*:
 
 ```java
-    ...
+	@Override
+	public void onCreate() {
+		super.onCreate();
 		RoboStyles.initialize(this);
+		
 		...
+	}
 ```
  4. Add at the beggining of each of your *Activity#OnCreate*:
 
 ```java
-	  @Override
-	  protected void onCreate(Bundle savedInstanceState) {
-		  super.onCreate(savedInstanceState);
-		  RoboStyles.inject(this);
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		RoboStyles.inject(this);
 
-      ...
-		  setContentView(R.layout.activity_main);
-		  ...
-	  }
+		...
+		setContentView(R.layout.activity_main);
+		...
+	}
 ```
  5. Enjoy
 
