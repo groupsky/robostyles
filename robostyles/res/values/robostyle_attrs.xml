@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-
-    <!-- An attribute that can be applied on any view to define space delimited list of styles -->
-    <declare-styleable name="View">
-        <attr name="styles" format="string" />
-    </declare-styleable>
-</resources>

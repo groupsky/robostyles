@@ -1,54 +1,75 @@
-robostyles [![Build Status](https://travis-ci.org/groupsky/robostyles.png?branch=master)](https://travis-ci.org/groupsky/robostyles)
+robostyles
 ==========
-An android library for applying multiple styles on android view
+[![Build Status](https://travis-ci.org/groupsky/robostyles.png?branch=master)](https://travis-ci.org/groupsky/robostyles)
+
+Android styling with CSS3 selectors.
+
+**Note:** The library is still in early alpha, so use at your own risk!
 
 example
 -------
 ```xml
+    <!-- Standard views may contain additional attribute classes to equivalent of HTML class attribute -->
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:robostyles="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/label"
         style="@style/MyText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#00f"
         android:text="@string/hello_world"
-        robostyles:styles="view text label secondary_label" />
+        robostyles:classes="view text label secondary_label" />
+    
+    <!-- Styles have additional attribute robostyle_selector where CSS3 selector is written -->
+    <style name="Selector_Tag">
+        <item name="robostyle_selector">Label</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+    
+    <!-- The name of the style is not used, but is required by Android -->
+    <style name="Selector_Class">
+        <item name="robostyle_selector">.main-label</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+    
+    <!-- id selector uses the value in android:id tag -->
+    <style name="Selector_ID">
+        <item name="robostyle_selector">#label</item>
+        <item name="android:background">#c33</item>
+        <item name="android:buttonStyle">@style/Selector_ID</item>
+    </style>
+
 ```
 
 
 info
 ----
-The library allows to specify multiple styles (plain old android styles) to be applied on a view. Currently only application styles can be used (no ```@android:styles/...```).
-Styles are specified only by their name, so instead of writing ```@style/MyText```, only ```MyText``` is necessary. The order in which styles are applied is:
- 1. Context theme
- 2. Styles (the new robostyles attribute)
- 3. View style (the original style attribute)
- 4. View attributes
+The library allows to use CSS3 selectors to apply styles on arbitrary views. Styles are normal android styles with additional item **robostyle_selector**. 
+The order in which attribute value is resolved is:
+ 1. View attributes
+ 2. View style (the original style attribute)
+ 3. Styles matched using robostyle_selector
+ 4. Context theme
+The first instance found is used.
 
 
 how to use
 ----------
  1. Clone the library
  2. Add as android library to your project
- 3. In your activities override the onCreateView:
+ 3. Add to your *Application#OnCreate*:
 ```java
-	@Override
-	public View onCreateView(View parent, String name, Context context, AttributeSet attrs) {
-		View view = RoboStyles.onCreateView(parent, name, context, attrs);
-		if (view != null) {
-			return view;
-		}
-		return super.onCreateView(parent, name, context, attrs);
-	}
+    ...
+		RoboStyles.initialize(this);
+		...
 ```
-
- 4. Declare the namespace in each layout ```xmlns:robostyles="http://schemas.android.com/apk/res-auto"```
- 5. Add ```robostyles:styles="style1 style2"``` to your views
- 6. Enjoy
+ 4. Enjoy
 
 
 limitations
 -----------
-Currently the lib works for honeycomp(3.0+) and newer.
+- Currently the lib works for honeycomp(3.0+) and newer.
+- Only a small subset of CSS3 selectors is supported, but work is under way to achieve nearly 100% support.
+
 
 
