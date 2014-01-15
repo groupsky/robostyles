@@ -52,18 +52,40 @@ The order in which attribute value is resolved is:
  4. Context theme
 The first instance found is used.
 
+**Note:** the styles are applied as part of the theme, so for styling button you need to use *android:buttonStyle* with reference to a style to be used, which may be the same style:
+```xml
+    <style name="ButtonStyle">
+        <item name="robostyle_selector">Button</item>
+        <item name="android:buttonStyle">@style/ButtonStyle</item>
+        <item name="android:background">#c33</item>
+    </style>
+```
 
 how to use
 ----------
  1. Clone the library
  2. Add as android library to your project
  3. Add to your *Application#OnCreate*:
+
 ```java
     ...
 		RoboStyles.initialize(this);
 		...
 ```
- 4. Enjoy
+ 4. Add at the beggining of each of your *Activity#OnCreate*:
+
+```java
+	  @Override
+	  protected void onCreate(Bundle savedInstanceState) {
+		  super.onCreate(savedInstanceState);
+		  RoboStyles.inject(this);
+
+      ...
+		  setContentView(R.layout.activity_main);
+		  ...
+	  }
+```
+ 5. Enjoy
 
 
 limitations

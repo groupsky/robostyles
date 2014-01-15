@@ -38,6 +38,10 @@ public class RoboStyles {
 		injectFactory(context);
 	}
 
+	public static void inject(Context context) {
+		injectFactory(context);
+	}
+
 	private static void injectFactory(Context context) {
 		LayoutInflater.from(context).setFactory2(new LayoutInflater.Factory2() {
 
